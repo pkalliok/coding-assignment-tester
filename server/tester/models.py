@@ -4,8 +4,8 @@ class Submission(models.Model):
     submission_time = models.DateTimeField(help_text="When this answer to coding assignment was tested as working")
     submission_endpoint_address = models.URLField(max_length=2048,
         help_text="The address (endpoint) where this answer was tested")
-    applicant_address = models.URLField(max_length=2048,
-        help_text="Applicant's contact info (mailto: or tel: URL)")
+    applicant_address = models.EmailField(max_length=2048,
+        help_text="Applicant's contact email address")
     submission_code_address = models.URLField(max_length=2048,
         help_text="Address where the code implementing the submission can be found")
 
