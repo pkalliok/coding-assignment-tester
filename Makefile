@@ -2,6 +2,9 @@
 try: stamps/reqs stamps/db
 	./myenv/bin/python manage.py runserver
 
+shell: stamps/reqs stamps/db
+	./myenv/bin/python manage.py shell
+
 myenv:
 	python3 -m venv myenv
 

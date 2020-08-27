@@ -8,9 +8,13 @@ class Submission(models.Model):
         help_text="Applicant's contact email address")
     submission_code_address = models.URLField(max_length=2048,
         help_text="Address where the code implementing the submission can be found")
+    def __str__(s):
+        return "%s @%s" % (s.submission_endpoint_address, s.submission_time)
 
 class PassedTest(models.Model):
     submission = models.ForeignKey(Submission, on_delete=models.CASCADE)
     test_input = models.TextField()
     test_output = models.TextField()
+    def __str__(s):
+        return "%s <- %s" % (s.submission, s.test_input)
 
