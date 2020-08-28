@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-def index(request):
-    return HttpResponse("This will be the tester.")
+def submission_form(request, assignment='fibonacci'):
+    return render(request, 'tester/submission_form.jinja',
+            {'assignment': assignment})
 

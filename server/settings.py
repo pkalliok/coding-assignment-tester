@@ -55,6 +55,7 @@ ROOT_URLCONF = 'server.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.jinja2.Jinja2',
+        'DIRS': ['tester/jinja2'],
         "APP_DIRS": True,
         "OPTIONS": {
             #"match_extension": ".jinja",
