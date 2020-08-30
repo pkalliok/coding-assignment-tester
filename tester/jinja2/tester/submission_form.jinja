@@ -1,2 +1,16 @@
-<h1>Cool</h1>
-<p>This is the solution submission form for {{ assignment }}.</p>
+{% extends "tester/layout.jinja" %}
+{% block title %}Test your solution{% endblock %}
+{% block content %}
+<form action="{{ url('tester:runtests', kwargs={'assignment':assignment}) }}"
+	method="post">
+  <p>With this tool, you can run automated tests against your
+  implementation of {{ assignment }}.</p>
+
+  <p><label for="endpoint_url">URL address of the endpoint of your
+  implementation:<br> <input type="text" id="endpoint_url"
+  name="endpoint_url"></p>
+
+  <input type="submit" value="Test my solution">
+  {{ csrf_input }}
+</form>
+{% endblock %}

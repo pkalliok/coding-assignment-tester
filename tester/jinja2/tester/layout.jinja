@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>{% block title %}page{% endblock %} - coding assingments</title>
+</head>
+<body>
+  <h1>{{ self.title() }}</h1>
+  {% block hero %}{% endblock %}
+  {% block content %}(Not written yet){% endblock %}
+  {% block footer %}
+  <hr>
+  <p> Made by City of Helsinki, 2020, and available under the MIT license.</p>
+  {% endblock %}
+</body>
+</html>
