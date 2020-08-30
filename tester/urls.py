@@ -7,6 +7,8 @@ app_name='tester'
 urlpatterns = [
     path('', views.submission_form, name='solve-default'),
     path('<str:assignment>/solve', views.submission_form, name='solve'),
-    path('<str:assignment>/result', views.run_tests, name='runtests'),
+    path('<str:assignment>/check', views.run_tests, name='runtests'),
+    path('<str:assignment>/result/<int:submission>', views.show_results,
+        name='results'),
     path('fibonacci-example', examples.nth_fibo, name='solution-example'),
 ]

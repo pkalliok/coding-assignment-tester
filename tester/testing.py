@@ -20,7 +20,7 @@ def run_test_against(endpoint, inp, expected):
     try: result = post(endpoint, json=inp).json()
     except Exception as e:
         raise FailedTest(reason='Calling endpoint failed', endpoint=endpoint,
-                problem=e)
+                problem=repr(e))
     if result != expected:
         raise FailedTest(reason='Wrong output from endpoint', input=inp,
                 expected=expected, result=result)
@@ -29,7 +29,7 @@ def run_test_against(endpoint, inp, expected):
 def run_tests_against(assignment, endpoint):
     try: generator = test_gens[assignment]
     except KeyError:
-        raise FailedTest(reason='Unknown assignment', assignment=assignment)
+        raise FailedTest(reason='Unknown assignment', unknown=assignment)
     return [run_test_against(endpoint, inp, expected)
             for inp, expected in generator()]
 

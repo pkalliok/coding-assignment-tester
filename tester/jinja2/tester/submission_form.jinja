@@ -1,5 +1,5 @@
 {% extends "tester/layout.jinja" %}
-{% block title %}Test your solution{% endblock %}
+{% block title %}Test your solution for {{ assignment }}{% endblock %}
 {% block content %}
 <form action="{{ url('tester:runtests', kwargs={'assignment':assignment}) }}"
 	method="post">
@@ -13,4 +13,9 @@
   <input type="submit" value="Test my solution">
   {{ csrf_input }}
 </form>
+
+{% if assignment in ['fibonacci',] %}
+<p>What should the {{ assignment }} endpoint do?</p>
+{% include "tester/explanations/%s.jinja" % assignment %}
+{% endif %}
 {% endblock %}

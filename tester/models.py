@@ -2,6 +2,8 @@ from django.db import models
 
 class Submission(models.Model):
     submission_time = models.DateTimeField(help_text="When this answer to coding assignment was tested as working")
+    assignment_name = models.CharField(max_length=256, default='',
+        help_text="The name of the coding assignment this is a submission for")
     submission_endpoint_address = models.URLField(max_length=2048,
         help_text="The address (endpoint) where this answer was tested")
     applicant_address = models.EmailField(max_length=2048,

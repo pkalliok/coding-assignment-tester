@@ -1,5 +1,11 @@
 {% extends "tester/layout.jinja" %}
-{% block title %}Testing results{% endblock %}
+{% block title %}Results for {{ assignment }} implementation at {{ results.submission_endpoint_address }}{% endblock %}
 {% block content %}
-<p>Testing results will appear here :)</p>
+<p>Your solution seems to have passed all our tests &lt;3</p>
+<p>Your implementation passed {{ results.passedtest_set.count() }} tests.  Here are some passed test cases:</p>
+<ul>
+{% for case in results.passedtest_set.all()[::6] %}
+<li>{{ case.test_input }} produced correctly {{ case.test_output }}</li>
+{% endfor %}
+</ul>
 {% endblock %}
