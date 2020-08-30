@@ -17,25 +17,26 @@ def submission_form(request, **kw):
     return render(request, 'tester/submission_form.jinja',
             {**jinja_context, **kw})
 
-def save_test_results(endpoint, results):
+def save_test_results(assignment, endpoint, results):
     sub = Submission(submission_endpoint_address=endpoint,
-            submission_time=timezone.now())
+            assignment_name=assignment, submission_time=timezone.now())
     sub.save()
     for inp, result in results:
         sub.passedtest_set.create(test_input=inp, test_output=result)
     return sub
 
 def run_tests(request, **kw):
+    assignment=kw['assignment']
     try: endpoint = request.POST['endpoint_url']
     except KeyError:
         return HttpResponseBadRequest('Missing parameter: endpoint_url')
-    try: results = run_tests_against(kw['assignment'], endpoint)
+    try: results = run_tests_against(assignment, endpoint)
     except FailedTest as e:
         return render(request, 'tester/failed_test.jinja',
                 {**jinja_context, **e.content})
-    submission = save_test_results(endpoint, results)
+    submission = save_test_results(assignment, endpoint, results)
     return HttpResponseRedirect(reverse('tester:results',
-                        args=(kw['assignment'], submission.id,)))
+                        args=(assignment, submission.id,)))
 
 def show_results(request, **kw):
     submission = Submission.objects.get(pk=kw['submission'])
