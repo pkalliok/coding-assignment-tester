@@ -8,6 +8,9 @@ shell: stamps/reqs stamps/db
 myenv:
 	python3 -m venv myenv
 
+tags:
+	ctags -R tester
+
 stamps/reqs: requirements.txt myenv
 	./myenv/bin/pip install -r requirements.txt
 	touch $@
