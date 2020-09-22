@@ -8,4 +8,29 @@
 <li>{{ case.test_input }} produced correctly {{ case.test_output }}</li>
 {% endfor %}
 </ul>
+
+<h2>This is where it gets serious!</h2>
+<p>If you want to make your passing implementation official, you need to
+give the following extra information:</p>
+
+<form method="post"
+  action="{{ url('tester:savesubmission',
+    kwargs=dict(assignment=assignment,
+	submission=submission)) }}">
+
+  <p><label for="applicant_address">Your email (for later identification):<br>
+  <input type="text" id="applicant_address" name="applicant_address"></p>
+
+  <p><label for="source_code_url">URL for the source code of your
+  application (must work with <code>git clone</code>):<br>
+  <input type="text" id="source_code_url" name="source_code_url"></p>
+
+  <input type="submit" value="Submit my solution to {{ assignment }}">
+  <input type="hidden" name="endpoint_url"
+	  value="{{ results.submission_endpoint_address }}">
+  {{ csrf_input }}
+</form>
+
+<p>If you want to improve your submission afterwards, you can just
+submit a new one.</p>
 {% endblock %}

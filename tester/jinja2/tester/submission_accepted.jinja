@@ -1,0 +1,8 @@
+{% extends "tester/layout.jinja" %}
+{% block title %}Submission accepted for {{ assignment }} implementation at {{ results.submission_endpoint_address }}{% endblock %}
+{% block content %}
+<p>Thanks, your submission has been accepted! &lt;3</p>
+<p>You can always <a href="{{ url('tester:solve',
+kwargs=dict(assignment=assignment)) }}">come back</a> with more solutions
+:)</p>
+{% endblock %}

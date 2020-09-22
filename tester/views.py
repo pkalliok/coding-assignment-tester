@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseBadRequest, HttpResponseRedirect
 from django.templatetags.static import static
 from django.urls import reverse
@@ -41,5 +41,15 @@ def run_tests(request, **kw):
 def show_results(request, **kw):
     submission = Submission.objects.get(pk=kw['submission'])
     return render(request, 'tester/result_report.jinja',
+            {**jinja_context, **kw, 'results': submission})
+
+def save_submission(request, **kw):
+    submission = get_object_or_404(Submission, id=kw['submission'],
+            assignment_name=kw['assignment'],
+            submission_endpoint_address=request.POST['endpoint_url'])
+    submission.applicant_address = request.POST['applicant_address']
+    submission.submission_code_address = request.POST['source_code_url']
+    submission.save()
+    return render(request, 'tester/submission_accepted.jinja',
             {**jinja_context, **kw, 'results': submission})
 
