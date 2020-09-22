@@ -5,8 +5,8 @@
 
 <p>
 {% if problem %}Calling {{ endpoint }} produced {{ problem }}.{% endif %}
-{% if result %}Your output was {{ actual }} when it should have been
-{{ expected }} for the input "{{ input }}".{% endif %}
+{% if result %}Your output was "{{ result }}" when it should have been
+"{{ expected }}" for the input "{{ input }}".{% endif %}
 {% if unknown %}I don't know about {{ unknown }}.{% endif %}
 </p>
 
