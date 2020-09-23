@@ -1,10 +1,14 @@
 
 from requests import post
 from random import randint
+from json.decoder import JSONDecodeError
 
 class FailedTest(Exception):
     def __init__(s, **kw): s.content = kw
     def __str__(s): return repr(s.content)
+
+def shorten(text, length):
+    return text if len(text) < length else text[:length-3] + '...'
 
 def generate_fibo():
     a, b = 1, 0
@@ -17,9 +21,14 @@ test_gens = {
 }
 
 def run_test_against(endpoint, inp, expected):
-    try: result = post(endpoint, json=inp).json()
+    try: req = post(endpoint, json=inp)
     except Exception as e:
         raise FailedTest(reason='Calling endpoint failed', endpoint=endpoint,
+                problem=repr(e))
+    try: result = req.json()
+    except JSONDecodeError as e:
+        raise FailedTest(reason='Decoding output failed', endpoint=endpoint,
+                input=inp, expected=expected, result=shorten(req.text, 20),
                 problem=repr(e))
     if result != expected:
         raise FailedTest(reason='Wrong output from endpoint', input=inp,
