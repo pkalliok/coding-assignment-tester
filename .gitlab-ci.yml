@@ -1,0 +1,31 @@
+# Mandatory include
+include:
+  - project: 'city-of-helsinki/kuva/ci-cd-config/ci-configuration'
+    ref: v2
+    file: '/.gitlab-ci-template.yml'
+ 
+variables:
+  SERVICE_PORT: "8080"
+ 
+# Build stage must be included and it must extend .build.
+build:
+  extends: .build
+ 
+review:
+  variables:
+    K8S_SECRET_ALLOWED_HOSTS: "*"
+    K8S_SECRET_DEBUG: 1
+    POSTGRES_ENABLED: 0
+
+staging:
+  only:
+    refs:
+      - master
+    
+#production:
+# It is highly discouraged to define own triggering rules in production. Don't do it.
+# only:
+#   refs:
+#     - master
+# These variables are available only for production env and are merged with the general variables defined above.
+#variables:
