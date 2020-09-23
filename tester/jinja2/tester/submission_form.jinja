@@ -14,7 +14,7 @@
   {{ csrf_input }}
 </form>
 
-{% if assignment in ['fibonacci',] %}
+{% if assignment in ['fibonacci','munansaannos'] %}
 <p>What should the {{ assignment }} endpoint do?</p>
 {% include "tester/explanations/%s.jinja" % assignment %}
 {% endif %}

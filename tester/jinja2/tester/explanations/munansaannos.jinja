@@ -1,0 +1,35 @@
+<p>Make an endpoint that accepts POST requests.</p>
+
+<p>Both the body of the POST request and the response you make are JSON
+strings (that is, quoted strings that pertain to JSON formatting).</p>
+
+<p>The response string should be formed from the request string with the
+following rules:</p>
+<ol>
+<li>For each pair of words, swap the beginnings of the words, up to and
+including the first vowel (and any consecutive vowels) of the word.
+<ul><li>Example: "fooma barbu" becomes "bama foorbu".</li></ul></li>
+<li>If there is an odd word at the end of the string, leave that as is.
+<ul><li>Example: "hello" becomes "hello".</li>
+<li>Example: "foo bar baz" becomes "ba foor baz".</li></ul></li>
+<li>Words are separated by spaces; you don't need to preserve exact
+spacing and you can treat punctuation as if it was part of words.
+<ul><li>Example: "amama &nbsp; bomomo ceme'me  foo." becomes "bomama
+amomo foome'me ce."</li></ul></li>
+<li>Vowels include at least those in the Finnish alphabet (a, e, i, o,
+u, y, å, ä, ö).
+<ul><li>Example: "vuoirkage mäölnö" becomes "mäörkage
+vuoilnö".</li></ul></li>
+<li>You can treat as a consonant any character that is not space or
+a vowel.</li>
+</ol>
+
+<p>Examples:</p>
+<table>
+<tr><th>request body</th><th>expected response body</th></tr>
+<tr><td>"Donald Trump"</td><td>"Trunald Domp"</td></tr>
+<tr><td>"Supercalifragilisticexpialidocious!"</td><td>"Supercalifragilisticexpialidocious!"</td></tr>
+<tr><td>"death, famine, and pestilence"</td><td>"fath, deamine, pend
+astilence"</td></tr>
+</table>
+
