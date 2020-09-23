@@ -64,8 +64,8 @@ def random_end():
 def random_swap_pair():
     st1, st2 = random_start(), random_start()
     end1, end2 = random_end(), random_end()
-    return ("%s%s %s%s" % (st1, end1, st2, end2),
-            "%s%s %s%s" % (st2, end1, st1, end2))
+    sp = ' ' + random_repeat(lambda: ' ')
+    return (st1 + end1 + sp + st2 + end2, st2 + end1 + sp + st1 + end2)
 
 def random_swapped_sentence():
     if randint(0,3) == 0: return random_swap_pair()
@@ -74,7 +74,8 @@ def random_swapped_sentence():
         return (word, word)
     s1, s2 = random_swapped_sentence()
     w1, w2 = random_swap_pair()
-    return ('%s %s' % (w1, s1), '%s %s' % (w2, s2))
+    sp = ' ' + random_repeat(lambda: ' ')
+    return (w1 + sp + s1, w2 + sp + s2)
 
 def generate_swaps():
     for i in range(30): yield random_swapped_sentence()

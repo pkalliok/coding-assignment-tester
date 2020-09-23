@@ -12,14 +12,15 @@ including the first vowel (and any consecutive vowels) of the word.
 <li>If there is an odd word at the end of the string, leave that as is.
 <ul><li>Example: "hello" becomes "hello".</li>
 <li>Example: "foo bar baz" becomes "ba foor baz".</li></ul></li>
-<li>Words are separated by spaces; you don't need to preserve exact
-spacing and you can treat punctuation as if it was part of words.
-<ul><li>Example: "amama &nbsp; bomomo ceme'me  foo." becomes "bomama
-amomo foome'me ce."</li></ul></li>
-<li>Vowels include at least those in the Finnish alphabet (a, e, i, o,
+<li>Words are separated by spaces; please preserve exact spacing.
+<ul><li>Example: "amama &nbsp; bomomo foo" becomes "bomama &nbsp;
+amomo foo"</li></ul></li>
+<li>You can treat punctuation as part of words.
+<ul><li>Example: "I'd rather die here." becomes "ra'd Ither he
+diere."</li></ul></li>
+<li>Vowels include (at least) those in the Finnish alphabet (a, e, i, o,
 u, y, å, ä, ö).
-<ul><li>Example: "vuoirkage mäölnö" becomes "mäörkage
-vuoilnö".</li></ul></li>
+<ul><li>Example: "vuoirkage mäölnö" becomes "mäörkage vuoilnö".</li></ul></li>
 <li>You can treat as a consonant any character that is not space or
 a vowel.</li>
 </ol>
