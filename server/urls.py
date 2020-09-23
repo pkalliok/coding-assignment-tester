@@ -16,7 +16,16 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
+def healthz(*args, **kwargs):
+    return HttpResponse(status=200)
+
+def readiness(*args, **kwargs):
+    return HttpResponse(status=200)
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^tester/', include('tester.urls')),
+    path("healthz", healthz),
+    path("readiness", readiness)
 ]
+
