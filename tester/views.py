@@ -39,7 +39,8 @@ def run_tests(request, **kw):
                         args=(assignment, submission.id,)))
 
 def show_results(request, **kw):
-    submission = Submission.objects.get(pk=kw['submission'])
+    submission = get_object_or_404(Submission, id=kw['submission'],
+            applicant_address='', submission_code_address='')
     return render(request, 'tester/result_report.jinja',
             {**jinja_context, **kw, 'results': submission})
 
