@@ -15,6 +15,7 @@ import environ
 
 env = environ.Env(
     DATABASE_URL=(str, 'sqlite:///coding-assignments.sqlite3'),
+    PORT=(int, 8080),
     VAR_ROOT=(str, '.'),
 )
 
@@ -128,6 +129,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT=env.path('VAR_ROOT')("static")
+
+print('Working on port %d' % env('PORT'))
 
 import django_heroku
 django_heroku.settings(locals())
