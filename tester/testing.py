@@ -83,7 +83,7 @@ def generate_swaps():
 test_gens = {
         'fibonacci': generate_fibo,
         'flatten': generate_flatten,
-        'munansaannos': generate_swaps,
+        'sananmuunnos': generate_swaps,
 }
 
 def run_test_against(endpoint, inp, expected):
