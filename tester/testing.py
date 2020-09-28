@@ -87,7 +87,7 @@ test_gens = {
 }
 
 def run_test_against(endpoint, inp, expected):
-    try: req = post(endpoint, json=inp)
+    try: req = post(endpoint, verify=False, json=inp)
     except Exception as e:
         raise FailedTest(reason='Calling endpoint failed', endpoint=endpoint,
                 problem=repr(e))
