@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.urls import path
 from django.contrib import admin
+from django.http import HttpResponse
 
 def healthz(*args, **kwargs):
     return HttpResponse(status=200)
