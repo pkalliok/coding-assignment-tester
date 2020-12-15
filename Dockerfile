@@ -37,7 +37,7 @@ FROM appbase as production
 # ==============================
 
 ENV VAR_ROOT /app
-COPY --from=staticbuilder --chown=appuser:appuser /app/static /app/static
+COPY --from=staticbuilder --chown=appuser:appuser /app/staticfiles /app/static
 COPY --chown=appuser:appuser . /app/
 
 USER appuser
