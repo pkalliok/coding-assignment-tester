@@ -21,11 +21,12 @@ services:
             DATABASE_HOST: assignments.helsinki
             DEV_SERVER: 1
             APPLY_MIGRATIONS: 1
+            ALLOWED_HOSTS: "*"
         volumes:
             - .:/app
             - django-media-volume:/var/media/
         ports:
-            - "8080:8080"
+            - "8000:8000"
         depends_on:
             - postgres
         container_name: assignments-backend

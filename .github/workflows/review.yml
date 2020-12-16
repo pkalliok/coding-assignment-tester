@@ -14,7 +14,6 @@ env:
   DATABASE_USER: user
   DATABASE_PASSWORD: testing-password
   APP_MIGRATE_COMMAND: /app/.prod/on_deploy.sh
-  SERVICE_PORT: "8080"
 
 jobs:
   build:

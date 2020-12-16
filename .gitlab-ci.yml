@@ -5,7 +5,6 @@ include:
     file: '/.gitlab-ci-template.yml'
  
 variables:
-  SERVICE_PORT: "8080"
   APP_MIGRATE_COMMAND: /app/.prod/on_deploy.sh
  
 # Build stage must be included and it must extend .build.

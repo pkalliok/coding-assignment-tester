@@ -16,7 +16,7 @@ import environ
 env = environ.Env(
     DEBUG=(bool, True),
     DATABASE_URL=(str, ''),
-    PORT=(int, 8080),
+    PORT=(int, 8000),
     VAR_ROOT=(str, '.'),
     ALLOWED_HOSTS=(list, []),
 )
