@@ -19,4 +19,3 @@ class PassedTest(models.Model):
     test_output = models.TextField()
     def __str__(s):
         return "%s <- %s" % (s.submission, s.test_input)
-

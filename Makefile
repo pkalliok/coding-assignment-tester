@@ -1,6 +1,6 @@
 
 try: stamps/reqs stamps/db
-	./myenv/bin/python manage.py runserver
+	DATABASE_URL=sqlite:///coding-assignments.sqlite3 ./myenv/bin/python manage.py runserver
 
 shell: stamps/reqs stamps/db
 	./myenv/bin/python manage.py shell

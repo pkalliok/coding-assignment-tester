@@ -14,9 +14,11 @@ import os
 import environ
 
 env = environ.Env(
-    DATABASE_URL=(str, 'sqlite:///coding-assignments.sqlite3'),
+    DEBUG=(bool, True),
+    DATABASE_URL=(str, ''),
     PORT=(int, 8080),
     VAR_ROOT=(str, '.'),
+    ALLOWED_HOSTS=(list, []),
 )
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -30,10 +32,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '$g3_g5eyi(&jb@bkus4th6(vsw-204-9_%975jiwe4)np(%yvk'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env("DEBUG")
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
 
 # Application definition
 
@@ -86,10 +87,12 @@ TEMPLATES = [
 WSGI_APPLICATION = 'server.wsgi.application'
 
 
+#
 # Database
-# https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-
-DATABASES = { 'default': env.db() }
+#
+DATABASES = {
+    'default': env.db(),
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -131,7 +134,3 @@ STATIC_URL = '/static/'
 STATIC_ROOT=env.path('VAR_ROOT')("static")
 
 print('Working on port %d' % env('PORT'))
-
-import django_heroku
-django_heroku.settings(locals())
-
