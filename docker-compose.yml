@@ -2,39 +2,38 @@ version: '3.7'
 services:
     postgres:
         image: helsinkitest/postgis:9.6-2.5-alpine
-        restart: on-failure
         environment:
             POSTGRES_USER: assignments
             POSTGRES_PASSWORD: assignments
             POSTGRES_DB: coding_assignments
         ports:
-            - 5433:5432
+            - 5432:5432
         volumes:
           - pgdata:/var/lib/postgresql/data
-        container_name: profile-db
+        container_name: assignments
 
     django:
         build:
             context: .
             target: production
         environment:
-            DATABASE_URL:
-              postgres://assignments:assignments@profile-db/coding_assignments
-            DATABASE_HOST: "profile-db"
+            DATABASE_URL: postgres://assignments:assignments@assignments/coding_assignments
+            DATABASE_HOST: assignments.helsinki
+            DEV_SERVER: 1
+            APPLY_MIGRATIONS: 1
+            ALLOWED_HOSTS: "*"
         volumes:
             - .:/app
             - django-media-volume:/var/media/
         ports:
-            - "8080:8080"
+            - "8000:8000"
         depends_on:
             - postgres
-        container_name: profile-backend
+        container_name: assignments-backend
 
 volumes:
         pgdata:
-            driver: local
         django-media-volume:
-
 
 networks:
     default:

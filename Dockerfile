@@ -37,10 +37,10 @@ FROM appbase as production
 # ==============================
 
 ENV VAR_ROOT /app
-COPY --from=staticbuilder --chown=appuser:appuser /app/staticfiles /app/static
+COPY --from=staticbuilder --chown=appuser:appuser /app/static /app/static
 COPY --chown=appuser:appuser . /app/
 
 USER appuser
 
-EXPOSE 8080/tcp
+EXPOSE 8000/tcp
 
