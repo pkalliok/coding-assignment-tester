@@ -46,3 +46,11 @@ jobs:
           K8S_SECRET_ALLOWED_HOSTS: "*"
           K8S_SECRET_DEBUG: 1
           K8S_SECRET_CORS_ORIGIN_ALLOW_ALL: 1
+
+      - name: Deploy Cronjob
+        uses: City-of-Helsinki/setup-cronjob-action@feat/DEVOPS-149_cronjobs
+        with:
+          kubeconfig_raw: ${{ env.KUBECONFIG_RAW}}
+          target_namespace: ${{ env.K8S_NAMESPACE }}
+          schedule: 55 * * * *
+          args: "{-c,curl -X POST --data-urlencode \"payload={\"text\": \"Testing cronjob hourly\"}\" ${{ secrets.SLACK_TEST_TARGET }}}"
