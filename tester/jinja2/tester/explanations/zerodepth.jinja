@@ -1,0 +1,55 @@
+<p>Make a REST endpoint that processes POST requests.  The request body
+is a JSON document that contains a list of lists of numbers (more
+information below); the response body should be a JSON list of two
+numbers (or nulls).  (The lists are not wrapped in a JSON object; they
+are directly the toplevel data in the request/response.)</p>
+
+<p>For example, the request might look like:</p>
+<pre>
+POST /zerodepth HTTP/1.1
+Host: myservice.com:8080
+Accept: */*
+Content-Type: application/json
+Content-Length: 17
+
+[1,2,[3,[4]],[5]]
+</pre>
+
+<p>And the corresponding response should be something like (but can
+include many more headers than):</p>
+<pre>
+HTTP/1.1 200 OK
+Date: Mon, 11 Jan 2021 14:16:13 GMT
+Cache-Control: no-cache, must-revalidate
+Transfer-Encoding: chunked
+Content-Type: application/json
+
+[null, null]
+</pre>
+
+<p>What the POST endpoint should actually calculate is how zeros
+(numbers that are 0) are nested in the input.  If there are no zeros in
+the input data, the result should be <code>[null, null]</code> (as
+above).  If there are zeros in the input data, the first number should
+tell what is the <em>least</em> number of lists that some zero is
+wrapped in; the second number should tell what is the <em>biggest</em>
+number of lists some zero is wrapped in.</p>
+
+<p>For example, in the input <code>[0,1,2,[[0],3]]</code>, the first
+zero is wrapped in just one list (the outermost list), but the second
+zero is wrapped in three lists: the outermost list, the list
+<code>[[0],3]</code> and the innermost list containing just the zero
+itself.  Consequently, the right answer for this input would be
+<code>[1,3]</code>, because the least wrapped zero is wrapped in one,
+and the most wrapped zero is wrapped in three lists.</p>
+
+<p>Some more examples of expected outputs:</p>
+<ul>
+<li>[1,[0,[0,2]],3] produces [2,3].</li>
+<li>[1,[2,[3,4]],5] produces [null,null].</li>
+<li>[1,0,2,0,3] produces [1,1].</li>
+<li>[[1,0,0,0]] produces [2,2].</li>
+<li>[1,[5,0,2],0,[7,[2,[0],3]],[[0]]] produces [1,4].  (The least
+wrapped zero is the second one, while the most wrapped zero is the third
+one.)</li>
+</ul>
