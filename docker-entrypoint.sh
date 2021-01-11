@@ -13,7 +13,7 @@ fi
 
 
 # Apply database migrations
-if test -z "$DONT_APPLY_MIGRATIONS"; then
+if [[ "$APPLY_MIGRATIONS" = "1" ]]; then
     echo "Applying database migrations..."
     ./manage.py migrate --noinput
 fi
@@ -33,8 +33,7 @@ fi
 if [[ ! -z "$@" ]]; then
     "$@"
 elif [[ "$DEV_SERVER" = "1" ]]; then
-    python ./manage.py runserver 0.0.0.0:8080
+    python ./manage.py runserver 0.0.0.0:8000
 else
-    uwsgi --ini uwsgi.ini
+    uwsgi --ini .prod/uwsgi.ini
 fi
-

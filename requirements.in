@@ -1,0 +1,16 @@
+asgiref
+certifi
+chardet
+django>2.1.15,<3.0
+django-environ
+idna
+Jinja2
+MarkupSafe
+#pkg-resources==0.0.0
+pytz
+requests
+sqlparse
+urllib3
+psycopg2
+--no-binary psycopg2
+uwsgi<3

@@ -42,5 +42,5 @@ COPY --chown=appuser:appuser . /app/
 
 USER appuser
 
-EXPOSE 8080/tcp
+EXPOSE 8000/tcp
 
