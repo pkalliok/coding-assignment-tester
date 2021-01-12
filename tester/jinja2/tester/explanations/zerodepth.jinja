@@ -31,9 +31,9 @@ Content-Type: application/json
 (numbers that are 0) are nested in the input.  If there are no zeros in
 the input data, the result should be <code>[null, null]</code> (as
 above).  If there are zeros in the input data, the first number should
-tell what is the <em>least</em> number of lists that some zero is
-wrapped in; the second number should tell what is the <em>biggest</em>
-number of lists some zero is wrapped in.</p>
+indicate the <em>minimum</em> count of nested lists where a zero can be
+found; the second number should indicate the <em>maximum</em> count of
+nested lists where a zero can be found.</p>
 
 <p>For example, in the input <code>[0,1,2,[[0],3]]</code>, the first
 zero is wrapped in just one list (the outermost list), but the second
