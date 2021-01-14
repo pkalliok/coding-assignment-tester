@@ -16,12 +16,16 @@ review:
     K8S_SECRET_ALLOWED_HOSTS: "*"
     K8S_SECRET_DEBUG: 1
     POSTGRES_ENABLED: 1
+    K8S_SECRET_SKIP_DATABASE_CHECK: 1
 
 staging:
   only:
     refs:
       - master
-    
+  variables:
+    K8S_SECRET_ALLOWED_HOSTS: "*"
+    K8S_SECRET_SKIP_DATABASE_CHECK: 1
+
 #production:
 # It is highly discouraged to define own triggering rules in production. Don't do it.
 # only:

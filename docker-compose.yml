@@ -19,6 +19,7 @@ services:
         environment:
             DATABASE_URL: postgres://assignments:assignments@assignments/coding_assignments
             DATABASE_HOST: assignments.helsinki
+            DATABASE_PORT: 5432
             DEV_SERVER: 1
             APPLY_MIGRATIONS: 1
             ALLOWED_HOSTS: "*"
