@@ -30,10 +30,12 @@ Content-Type: application/json
 <p>What the POST endpoint should actually calculate is how zeros
 (numbers that are 0) are nested in the input.  If there are no zeros in
 the input data, the result should be <code>[null, null]</code> (as
-above).  If there are zeros in the input data, the first number should
-indicate the <em>minimum</em> count of nested lists where a zero can be
-found; the second number should indicate the <em>maximum</em> count of
-nested lists where a zero can be found.</p>
+above).  If there are zeros in the input data, the numbers are about how
+deep in the list structure the zeros can be found: the first number
+should be the <em>smallest</em> amount of lists nested around a zero;
+the second number should be the <em>biggest</em> amount of lists nested
+around a zero.  Basically, "the amount of lists nested" means the number
+of brackets the zero is in.</p>
 
 <p>For example, in the input <code>[0,1,2,[[0],3]]</code>, the first
 zero is wrapped in just one list (the outermost list), but the second
